@@ -1,13 +1,9 @@
-Version: 1.0
+# BIOL-653-Hensel-Marc
+*this is italics*   
+__this is bold, bitch__  
+I am ^super^  
 
-RestoreWorkspace: Default
-SaveWorkspace: Default
-AlwaysSaveHistory: Default
-
-EnableCodeIndexing: Yes
-UseSpacesForTab: Yes
-NumSpacesForTab: 2
-Encoding: UTF-8
-
-RnwWeave: Sweave
-LaTeX: pdfLaTeX
+#Hi
+##How
+###Are
+####you
