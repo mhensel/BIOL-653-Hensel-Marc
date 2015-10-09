@@ -10,10 +10,19 @@ library(dplyr)
 ggplot(data = gapminder, aes(x = gdpPercap, y = lifeExp)) + 
   geom_point(aes(color = factor(continent), shape = factor(continent)))
 
+# JD: It is unecessary to wrap continent with factor() because the data are 
+# already factors in the gapminder data.frame.
+
 #2
 #Standardize/log transform
 ggplot(data = gapminder, aes(x = log10(gdpPercap), y = lifeExp)) + 
   geom_point(aes(color = factor(continent), shape = factor(continent)))
+
+# JD: An alternative is to change the scale of the x axis:
+ggplot(data = gapminder, aes(x = gdpPercap, y = lifeExp, colour = continent, shape = continent)) + 
+  geom_point() +
+  scale_x_log10()
+
 
 #3
 #add a trendline
@@ -50,10 +59,19 @@ AsianGap <- gapminder %>%
 
 ggplot(data = AsianGap, aes(x = lifeExp)) + 
   geom_density(aes(fill= "Asia"), alpha=0.7) +
-  scale_fill_manual(values = c('green')) +
+  scale_fill_manual(values = c('green')) +  # the default colour was already green
   geom_vline(aes(xintercept = mean(lifeExp))) +
   theme(legend.position = "none") +
-  ggtitle("life expentancy in Asia")
+  ggtitle("life expectancy in Asia")
+
+# JD: It can be preferable when the object is small, to create the data subset 
+# within the ggplot so that you don't end up with many little objects running 
+# filling up your workspace. You can also just calculate the mean in ggplot if 
+# you'd like:
+
+ggplot(filter(gapminder, lifeExp, continent), aes(x = lifeExp, fill = continent)) + 
+  geom_density(alpha = 0.5) + 
+  geom_vline(xintercept = mean(lifeExp))
 
 
 #8### WHAT IS GOING ON HERHE
